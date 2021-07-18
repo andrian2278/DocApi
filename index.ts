@@ -18,8 +18,8 @@ app.register(swagger.default, {
   routePrefix: '/api',
   swagger: {
     info: {
-      title: '###Esame ITS 2021',
-      description: '###Api Esame',
+      title: 'Esame ITS 2021',
+      description: 'Documentazione Api',
       version: '1.0.0'
     },
     host: '127.0.0.1:3000',
@@ -31,7 +31,7 @@ app.register(swagger.default, {
 })
 
 // CHIAMATA GET PER RICEVERE I DATI
-app.get("/pippo", (req, reply) => {//###CAMBIA PIPPO!
+app.get("/date", (req, reply) => {//###CAMBIA DATE!
   reply
     .code(200)  // => IL CODICE CHE VIENE TORNATO
     .header('Content-Type', 'application/json; charset=utf-8')
@@ -44,9 +44,22 @@ app.get("/pippo", (req, reply) => {//###CAMBIA PIPPO!
       }
     )
 })
+// CHIAMATA GET:ID PER RICEVERE  DATI ID
+app.get("/date/:id", (req,reply)=>{
+  reply
+      .code(200)
+      .header('Content-Type','Applicatin/json; charset=utf-8')
+      .send(
+        {
+          name:'###Nome',
+          theme: '##THEME',
+          attractiom: '###ATTRACTION',
+        }
+      )
+})
 
 // CHIAMATA POST PER INSERIRE I DATI
-app.post("/pippo", {//###CAMBIA PIPPO!
+app.post("/date", {//###CAMBIA date!
     schema: { 
       params: {
         type: "object",
@@ -76,7 +89,7 @@ app.post("/pippo", {//###CAMBIA PIPPO!
 )
 
 // CHIAMATA PUT PER MODIFICARE I DATI
-app.put("/pippo/:name", {
+app.put("/date/:name", {
   schema: { 
     params: {
       type: "object",
@@ -88,7 +101,7 @@ app.put("/pippo/:name", {
       }
     } 
   }
-}, (req, reply) => {//###CAMBIA PIPPO!
+}, (req, reply) => {//###CAMBIA DATE!
   reply
     .code(200)  // => IL CODICE CHE VIENE TORNATO
     .send({
@@ -98,7 +111,7 @@ app.put("/pippo/:name", {
 )
 
 // CHIAMATA DELETE PER ELIMINARE I DATI
-app.delete("/pippo/:name", {
+app.delete("/date/:name", {
   schema: { 
     params: {
       type: "object",
@@ -110,7 +123,7 @@ app.delete("/pippo/:name", {
       }
     } 
   }
-}, (req, reply) => {//###CAMBIA PIPPO!
+}, (req, reply) => {//###CAMBIA DATE!
   reply
     .code(200)  // => IL CODICE CHE VIENE TORNATO
     .send({

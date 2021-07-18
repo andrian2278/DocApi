@@ -15,8 +15,8 @@ app.register(swagger["default"], {
     routePrefix: '/api',
     swagger: {
         info: {
-            title: '###Esame ITS 2021',
-            description: '###Api Esame',
+            title: 'Esame ITS 2021',
+            description: 'Documentazione Api',
             version: '1.0.0'
         },
         host: '127.0.0.1:3000',
@@ -27,7 +27,7 @@ app.register(swagger["default"], {
     exposeRoute: true
 });
 // CHIAMATA GET PER RICEVERE I DATI
-app.get("/pippo", function (req, reply) {
+app.get("/date", function (req, reply) {
     reply
         .code(200) // => IL CODICE CHE VIENE TORNATO
         .header('Content-Type', 'application/json; charset=utf-8')
@@ -38,8 +38,19 @@ app.get("/pippo", function (req, reply) {
         location: '###LOCATION' //  |  =>
     });
 });
+// CHIAMATA GET:ID PER RICEVERE  DATI ID
+app.get("/date/:id", function (req, reply) {
+    reply
+        .code(200)
+        .header('Content-Type', 'Applicatin/json; charset=utf-8')
+        .send({
+        name: '###Nome',
+        theme: '##THEME',
+        attractiom: '###ATTRACTION'
+    });
+});
 // CHIAMATA POST PER INSERIRE I DATI
-app.post("/pippo", {
+app.post("/date", {
     schema: {
         params: {
             type: "object",
@@ -67,7 +78,7 @@ app.post("/pippo", {
     });
 });
 // CHIAMATA PUT PER MODIFICARE I DATI
-app.put("/pippo/:name", {
+app.put("/date/:name", {
     schema: {
         params: {
             type: "object",
@@ -87,7 +98,7 @@ app.put("/pippo/:name", {
     });
 });
 // CHIAMATA DELETE PER ELIMINARE I DATI
-app["delete"]("/pippo/:name", {
+app["delete"]("/date/:name", {
     schema: {
         params: {
             type: "object",
