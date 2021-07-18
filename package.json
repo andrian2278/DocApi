@@ -1,0 +1,13 @@
+{
+    "name": "name",
+    "description": "description",
+    "authors": "Andrian Pascal",
+    "version": "1.0.0",
+    "main": "index.js",
+    "dependencies": {
+        "@types/node": "^16.3.3",
+        "fastify": "^3.19.1",
+        "fastify-swagger": "^3.5.0",
+        "nodemon": "^2.0.12"
+    }
+}
