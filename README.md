@@ -15,7 +15,7 @@ gh repo clone andrian2278/DocApi
 ## If don't want install Git,Download Zip
 ### Step 2 
 #### If you use CMD/Powershell/Github Cli performs path where is a project C://PATH_WHERE_IS_PROGECT/DocApi: and performs commands
- Command1: npm install 
- Command 3: node .
+ -Command1: npm install 
+ -Command 3: node .
 #### LIVE SERVER
 http://127.0.0.1:3001/api
