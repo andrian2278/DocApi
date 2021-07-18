@@ -19,7 +19,7 @@ app.register(swagger["default"], {
             description: 'Documentazione Api',
             version: '1.0.0'
         },
-        host: '127.0.0.1:3000',
+        host: '127.0.0.1:3000/',
         schemes: ['http'],
         consumes: ['application/json'],
         produces: ['application/json']
@@ -27,45 +27,113 @@ app.register(swagger["default"], {
     exposeRoute: true
 });
 // CHIAMATA GET PER RICEVERE I DATI
-app.get("/date", function (req, reply) {
-    reply
-        .code(200) // => IL CODICE CHE VIENE TORNATO
-        .header('Content-Type', 'application/json; charset=utf-8')
-        .send({
-        name: '###NOME',
-        theme: '###THEME',
-        attraction: '###ATTRACTION',
-        location: '###LOCATION' //  |  =>
-    });
-});
-// CHIAMATA GET:ID PER RICEVERE  DATI ID
-app.get("/date/:id", function (req, reply) {
-    reply
-        .code(200)
-        .header('Content-Type', 'Applicatin/json; charset=utf-8')
-        .send({
-        name: '###Nome',
-        theme: '##THEME',
-        attractiom: '###ATTRACTION'
-    });
-});
-// CHIAMATA POST PER INSERIRE I DATI
-app.post("/date", {
+app.get("/ParkList", {
     schema: {
+        description: 'Get data',
+        summary: 'Get  DATA by ID ',
+        response: {
+            200: {
+                description: 'Successful response',
+                type: 'object',
+                properties: {
+                    id: { type: 'number' },
+                    localita: { type: 'string' },
+                    nomepark: { type: 'string' },
+                    tema: { type: 'string' },
+                    tip_attrazioni: { type: 'string' },
+                    disponibilita: { type: 'boolean' },
+                    time_open: { type: 'string' },
+                    time_close: { type: 'string' },
+                    some: { type: 'string' }
+                }
+            }
+        }
+    }
+}, function (req, reply) {
+});
+//CHIAMATA GET:ID PER RICEVERE  DATI ID
+app.get('/ParkList/:id', {
+    schema: {
+        description: 'Get data',
+        summary: 'Get  DATA by ID ',
         params: {
-            type: "object",
+            type: 'object',
             properties: {
-                nome: {
-                    type: "string",
-                    description: "###Inserire descrizione chiamata POST (Ex: 'Inserire Nome')"
+                id: {
+                    type: 'string',
+                    description: 'user id'
+                }
+            }
+        },
+        response: {
+            200: {
+                description: 'Successful response',
+                type: 'object',
+                properties: {
+                    id: { type: 'number' },
+                    localita: { type: 'string' },
+                    nomepark: { type: 'string' },
+                    tema: { type: 'string' },
+                    tip_attrazioni: { type: 'string' },
+                    disponibilita: { type: 'boolean' },
+                    time_open: { type: 'string' },
+                    time_close: { type: 'string' },
+                    some: { type: 'string' }
+                }
+            }
+        }
+    }
+}, function (req, reply) { reply.send({ result: true, message: "ecco il lista trovata con questo id" }); });
+// CHIAMATA POST PER INSERIRE I DATI
+app.post("/ParkList", {
+    schema: {
+        body: {
+            type: 'object',
+            properties: {
+                localita: {
+                    type: 'string',
+                    description: "###Inserisce Localita"
                 },
-                cognome: {
-                    type: "string",
-                    description: "###Inserire descrizione chiamata POST"
+                nomepark: {
+                    type: 'string',
+                    description: "###Inserire Nome"
                 },
-                numero: {
-                    type: "number",
-                    description: "###Inserire descrizione chiamata POST"
+                tema: {
+                    type: 'string',
+                    description: "###Inserire Tema"
+                },
+                tip_attrazioni: {
+                    type: 'string',
+                    description: "###Inserire Tipi"
+                },
+                disponibilita: {
+                    type: 'boolean',
+                    description: "###Inserire 1/0"
+                },
+                time_open: {
+                    type: 'string',
+                    description: "###Inserire ora"
+                },
+                time_close: {
+                    type: 'string',
+                    description: "###Inserire ora"
+                }
+            }
+        },
+        response: {
+            201: {
+                description: 'Successful response',
+                type: 'object',
+                properties: {
+                    id: { type: 'number' },
+                    localita: { type: 'string' },
+                    nomepark: { type: 'string' },
+                    tema: { type: 'string' },
+                    tip_attrazioni: { type: 'string' },
+                    disponibilita: { type: 'boolean' },
+                    time_open: { type: 'string' },
+                    time_close: { type: 'string' },
+                    some: { type: 'string' }
                 }
             }
         }
@@ -78,14 +146,47 @@ app.post("/date", {
     });
 });
 // CHIAMATA PUT PER MODIFICARE I DATI
-app.put("/date/:name", {
+app.put("/ParkList/:id", {
     schema: {
         params: {
             type: "object",
             properties: {
-                nome: {
+                id: {
                     type: "string",
-                    description: "###Inserire descrizione chiamata POST (Ex: 'Inserire Nome da cambiare')"
+                    description: "###Inserire descrizione chiamata POST (Ex: 'Inserire Nome dell'utente da eliminare')"
+                }
+            }
+        },
+        body: {
+            type: 'object',
+            properties: {
+                localita: {
+                    type: 'string',
+                    description: "###Inserisce Localita"
+                },
+                nomepark: {
+                    type: 'string',
+                    description: "###Inserire Nome"
+                },
+                tema: {
+                    type: 'string',
+                    description: "###Inserire Tema"
+                },
+                tip_attrazioni: {
+                    type: 'string',
+                    description: "###Inserire Tipi"
+                },
+                disponibilita: {
+                    type: 'boolean',
+                    description: "###Inserire 1/0"
+                },
+                time_open: {
+                    type: 'string',
+                    description: "###Inserire ora"
+                },
+                time_close: {
+                    type: 'string',
+                    description: "###Inserire ora"
                 }
             }
         }
@@ -98,12 +199,12 @@ app.put("/date/:name", {
     });
 });
 // CHIAMATA DELETE PER ELIMINARE I DATI
-app["delete"]("/date/:name", {
+app["delete"]("/ParkList/:id", {
     schema: {
         params: {
             type: "object",
             properties: {
-                nome: {
+                id: {
                     type: "string",
                     description: "###Inserire descrizione chiamata POST (Ex: 'Inserire Nome dell'utente da eliminare')"
                 }
@@ -117,7 +218,7 @@ app["delete"]("/date/:name", {
         message: "###User deleted succesfully!"
     });
 });
-app.listen(3000, function (err) {
+app.listen(3001, function (err) {
     if (err)
         throw err;
 });
