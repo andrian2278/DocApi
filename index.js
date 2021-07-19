@@ -29,8 +29,8 @@ app.register(swagger["default"], {
 // CHIAMATA GET PER RICEVERE I DATI
 app.get("/ParkList", {
     schema: {
-        description: 'Get data',
-        summary: 'Get  DATA by ID ',
+        description: 'Get ALL DATES',
+        summary: ' Get ALL DATES ',
         response: {
             200: {
                 description: 'Successful response',
@@ -54,8 +54,8 @@ app.get("/ParkList", {
 //CHIAMATA GET:ID PER RICEVERE  DATI ID
 app.get('/ParkList/:id', {
     schema: {
-        description: 'Get data',
-        summary: 'Get  DATA by ID ',
+        description: 'Get DATA By ID',
+        summary: 'Get  DATA By ID ',
         params: {
             type: 'object',
             properties: {
@@ -87,6 +87,8 @@ app.get('/ParkList/:id', {
 // CHIAMATA POST PER INSERIRE I DATI
 app.post("/ParkList", {
     schema: {
+        description: 'Chiamata post Per Inserire i  Dati',
+        summary: 'Chiamata post Per Inserire i  Dati',
         body: {
             type: 'object',
             properties: {
@@ -121,7 +123,7 @@ app.post("/ParkList", {
             }
         },
         response: {
-            201: {
+            200: {
                 description: 'Successful response',
                 type: 'object',
                 properties: {
@@ -148,6 +150,8 @@ app.post("/ParkList", {
 // CHIAMATA PUT PER MODIFICARE I DATI
 app.put("/ParkList/:id", {
     schema: {
+        description: 'Chiamata PUT PER MODIFICARE I DATI',
+        summary: 'Chiamata PUT PER MODIFICARE I DATI',
         params: {
             type: "object",
             properties: {
@@ -201,6 +205,8 @@ app.put("/ParkList/:id", {
 // CHIAMATA DELETE PER ELIMINARE I DATI
 app["delete"]("/ParkList/:id", {
     schema: {
+        description: 'Chiamata DELLETE PER eliminare I DATI',
+        summary: 'Chiamata DELLETE PER MODIFICARE I DATI',
         params: {
             type: "object",
             properties: {
