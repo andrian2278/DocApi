@@ -27,7 +27,7 @@ app.register(swagger["default"], {
     exposeRoute: true
 });
 // CHIAMATA GET PER RICEVERE I DATI
-app.get("/ParkList", {
+app.get("/OFFERTS_TURING", {
     schema: {
         description: 'Get ALL DATES',
         summary: ' Get ALL DATES ',
@@ -37,14 +37,17 @@ app.get("/ParkList", {
                 type: 'object',
                 properties: {
                     id: { type: 'number' },
-                    localita: { type: 'string' },
-                    nomepark: { type: 'string' },
-                    tema: { type: 'string' },
-                    tip_attrazioni: { type: 'string' },
-                    disponibilita: { type: 'boolean' },
+                    location: { type: 'string' },
+                    img_url: { type: 'string' },
+                    attraction: { type: 'string' },
+                    interest_type: { type: 'string' },
                     time_open: { type: 'string' },
                     time_close: { type: 'string' },
-                    some: { type: 'string' }
+                    persone_present: { type: 'string' },
+                    people_entered: { type: 'string' },
+                    people_out: { type: 'string' },
+                    average_stay: { type: 'string' },
+                    issues: { type: 'boolean' }
                 }
             }
         }
@@ -52,7 +55,7 @@ app.get("/ParkList", {
 }, function (req, reply) {
 });
 //CHIAMATA GET:ID PER RICEVERE  DATI ID
-app.get('/ParkList/:id', {
+app.get('/OFFERTS_TURING/:id', {
     schema: {
         description: 'Get DATA By ID',
         summary: 'Get  DATA By ID ',
@@ -61,7 +64,7 @@ app.get('/ParkList/:id', {
             properties: {
                 id: {
                     type: 'string',
-                    description: 'user id'
+                    description: 'Inserice un id che cerci '
                 }
             }
         },
@@ -71,54 +74,62 @@ app.get('/ParkList/:id', {
                 type: 'object',
                 properties: {
                     id: { type: 'number' },
-                    localita: { type: 'string' },
-                    nomepark: { type: 'string' },
-                    tema: { type: 'string' },
-                    tip_attrazioni: { type: 'string' },
-                    disponibilita: { type: 'boolean' },
+                    location: { type: 'string' },
+                    img_url: { type: 'string' },
+                    attraction: { type: 'string' },
+                    interest_type: { type: 'string' },
                     time_open: { type: 'string' },
                     time_close: { type: 'string' },
-                    some: { type: 'string' }
+                    persone_present: { type: 'string' },
+                    people_entered: { type: 'string' },
+                    people_out: { type: 'string' },
+                    average_stay: { type: 'string' },
+                    issues: { type: 'boolean' }
                 }
             }
         }
     }
 }, function (req, reply) { reply.send({ result: true, message: "ecco il lista trovata con questo id" }); });
 // CHIAMATA POST PER INSERIRE I DATI
-app.post("/ParkList", {
+app.post("/OFFERTS_TURING", {
     schema: {
         description: 'Chiamata post Per Inserire i  Dati',
         summary: 'Chiamata post Per Inserire i  Dati',
         body: {
             type: 'object',
             properties: {
-                localita: {
-                    type: 'string',
-                    description: "###Inserisce Localita"
+                location: { type: 'string',
+                    description: "Inserisce Localita"
                 },
-                nomepark: {
-                    type: 'string',
-                    description: "###Inserire Nome"
+                img_url: { type: 'string',
+                    description: "Inserisce URL Imagine"
                 },
-                tema: {
-                    type: 'string',
-                    description: "###Inserire Tema"
+                attraction: { type: 'string',
+                    description: "Inserisce Tipo di attration"
                 },
-                tip_attrazioni: {
-                    type: 'string',
-                    description: "###Inserire Tipi"
+                interest_type: { type: 'string',
+                    description: "Inserisce Eventi/Tipo di interesse"
                 },
-                disponibilita: {
-                    type: 'boolean',
-                    description: "###Inserire 1/0"
+                time_open: { type: 'string',
+                    description: "Inserisce Ora di apertura"
                 },
-                time_open: {
-                    type: 'string',
-                    description: "###Inserire ora"
+                time_close: { type: 'string',
+                    description: "Inserisce Ora di chisura"
                 },
-                time_close: {
-                    type: 'string',
-                    description: "###Inserire ora"
+                persone_present: { type: 'string',
+                    description: "Inserisce Status di persone /minim/medie/maxim"
+                },
+                people_entered: { type: 'string',
+                    description: "Inserisce persone entrate /minim/medie/maxim"
+                },
+                people_out: { type: 'string',
+                    description: "Inserisce Status di persone uscite /minim/medie/maxim"
+                },
+                average_stay: { type: 'string',
+                    description: "Inserisce Status di permanenza /minim/medie/maxim"
+                },
+                issues: { type: 'boolean',
+                    description: "Inserisce Status 0/1"
                 }
             }
         },
@@ -144,11 +155,11 @@ app.post("/ParkList", {
     reply
         .code(200) // => IL CODICE CHE VIENE TORNATO
         .send({
-        message: "###Data added succesfully!"
+        message: "Data added succesfully!"
     });
 });
 // CHIAMATA PUT PER MODIFICARE I DATI
-app.put("/ParkList/:id", {
+app.put("/OFFERTS_TURING/:id", {
     schema: {
         description: 'Chiamata PUT PER MODIFICARE I DATI',
         summary: 'Chiamata PUT PER MODIFICARE I DATI',
@@ -157,40 +168,45 @@ app.put("/ParkList/:id", {
             properties: {
                 id: {
                     type: "string",
-                    description: "###Inserire descrizione chiamata POST (Ex: 'Inserire Nome dell'utente da eliminare')"
+                    description: "Inserisce id che voi modificare"
                 }
             }
         },
         body: {
             type: 'object',
             properties: {
-                localita: {
-                    type: 'string',
-                    description: "###Inserisce Localita"
+                location: { type: 'string',
+                    description: "Inserisce Localita"
                 },
-                nomepark: {
-                    type: 'string',
-                    description: "###Inserire Nome"
+                img_url: { type: 'string',
+                    description: "Inserisce URL Imagine"
                 },
-                tema: {
-                    type: 'string',
-                    description: "###Inserire Tema"
+                attraction: { type: 'string',
+                    description: "Inserisce Tipo di attration"
                 },
-                tip_attrazioni: {
-                    type: 'string',
-                    description: "###Inserire Tipi"
+                interest_type: { type: 'string',
+                    description: "Inserisce Eventi/Tipo di interesse"
                 },
-                disponibilita: {
-                    type: 'boolean',
-                    description: "###Inserire 1/0"
+                time_open: { type: 'string',
+                    description: "Inserisce Ora di apertura"
                 },
-                time_open: {
-                    type: 'string',
-                    description: "###Inserire ora"
+                time_close: { type: 'string',
+                    description: "Inserisce Ora di chisura"
                 },
-                time_close: {
-                    type: 'string',
-                    description: "###Inserire ora"
+                persone_present: { type: 'string',
+                    description: "Inserisce Status di persone /minim/medie/maxim"
+                },
+                people_entered: { type: 'string',
+                    description: "Inserisce persone entrate /minim/medie/maxim"
+                },
+                people_out: { type: 'string',
+                    description: "Inserisce Status di persone uscite /minim/medie/maxim"
+                },
+                average_stay: { type: 'string',
+                    description: "Inserisce Status di permanenza /minim/medie/maxim"
+                },
+                issues: { type: 'boolean',
+                    description: "Inserisce Status 0/1"
                 }
             }
         }
@@ -203,7 +219,7 @@ app.put("/ParkList/:id", {
     });
 });
 // CHIAMATA DELETE PER ELIMINARE I DATI
-app["delete"]("/ParkList/:id", {
+app["delete"]("/OFFERTS_TURING/:id", {
     schema: {
         description: 'Chiamata DELLETE PER eliminare I DATI',
         summary: 'Chiamata DELLETE PER MODIFICARE I DATI',
@@ -212,7 +228,7 @@ app["delete"]("/ParkList/:id", {
             properties: {
                 id: {
                     type: "string",
-                    description: "###Inserire descrizione chiamata POST (Ex: 'Inserire Nome dell'utente da eliminare')"
+                    description: "Inserisce ID Da eliminare"
                 }
             }
         }
