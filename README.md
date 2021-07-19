@@ -6,12 +6,12 @@
 https://git-scm.com/
 ## If don't want install Git program, Downloand Zip
 #### HTTPS
-git clone https://github.com/andrian2278/DocApi.git
+git clone https://github.com/andrian2278/Esamini_Finale_Andrian_Pascal_DocApi.git
 #### SSH
-git clone git@github.com:andrian2278/DocApi.git
+git clone git@github.com:andrian2278/Esamini_Finale_Andrian_Pascal_DocApi.git
 #### Github Cli
-gh repo clone andrian2278/DocApi
---
+gh repo clone andrian2278/Esamini_Finale_Andrian_Pascal_DocApi
+
 ## If don't want install Git,Download Zip
 ### Step 2 
 #### If you use CMD/Powershell/Github Cli performs path where is a project C://PATH_WHERE_IS_PROGECT/DocApi: and performs commands
